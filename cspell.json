@@ -1,0 +1,29 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "languageSettings": [
+    {
+      "languageId": "ru",
+      "locale": "ru",
+      "enabled": true
+    }
+  ],
+  "words": [
+    "openai",
+    "OPENAI"
+  ],
+  "ignoreWords": [
+    "Подключение",
+    "Клиент",
+    "успешно",
+    "подключен",
+    "Держим",
+    "клиент",
+    "активным"
+  ],
+  "allowCompoundWords": true,
+  "ignorePaths": [
+    "node_modules/**",
+    "package-lock.json"
+  ]
+} 

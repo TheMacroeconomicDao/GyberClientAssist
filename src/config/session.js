@@ -6,16 +6,21 @@ export async function initSession() {
   const sessionDir = path.dirname(process.env.SESSION_FILE);
   await fs.mkdir(sessionDir, { recursive: true });
   
-  let sessionData = '';
   try {
-    sessionData = await fs.readFile(process.env.SESSION_FILE, 'utf8');
+    const sessionData = await fs.readFile(process.env.SESSION_FILE, 'utf8');
+    console.log('Сессия успешно загружена');
+    return new StringSession(sessionData);
   } catch (err) {
-    console.log('Существующая сессия не найдена, создаём новую...');
+    console.log('Создаём новую сессию...');
+    return new StringSession('');
   }
-  
-  return new StringSession(sessionData);
 }
 
 export async function saveSession(session) {
-  await fs.writeFile(process.env.SESSION_FILE, session.save());
+  try {
+    await fs.writeFile(process.env.SESSION_FILE, session.save());
+    console.log('Сессия сохранена');
+  } catch (error) {
+    console.error('Ошибка при сохранении сессии:', error);
+  }
 }
